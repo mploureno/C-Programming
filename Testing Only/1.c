@@ -1,19 +1,16 @@
 #include<stdio.h>
-#include<string.h>
+
 /*
-    string reverse printing
-    input: string
-    output: reverse string
+    Printing recurrence within an array
+    input: user defined
+    output: numbers with their recurrence
 */
 
 int main(){
-    char name[50];
-    gets(name);
-    int size=strlen(name);
-    //printf("%d", size);
+    int array[10];
     int count;
-    for(count=size-1;count>=0;count--){
-        printf("%c",name[count]);
+    for(count=0;count<10;count++){
+        scanf("%d", &array[count]);
     }
 
 
