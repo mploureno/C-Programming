@@ -47,7 +47,26 @@ coordinate head, bend[500],food,body[30];
 
 int main()
 {
-
+    /* Change the Background Color as following:
+    0 = Black
+    1 = Blue
+    2 = Green
+    3 = Aqua
+    4 = Red
+    5 = Purple
+    6 = Yellow
+    7 = White
+    8 = Gray
+    9 = Light Blue
+    A = Light Green
+    B = Light Aqua
+    C = Light Red
+    D = Light Purple
+    E = Light Yellow
+    F = Bright White
+    This library uses stdlib header
+    */
+    system("COLOR 3F");
     char key;
 
     Print();
@@ -77,7 +96,6 @@ int main()
     return 0;
 
 }
-
 void Move()
 {
     int a,i;
@@ -190,7 +208,6 @@ void Move()
 
     }
 }
-
 void gotoxy(int x, int y)
 {
 
@@ -223,6 +240,26 @@ void load(){
     printf("%c",177);}
     getch();
 }
+void Up()
+{
+	int i;
+	for (i = 0;i <= (bend[bend_no].y - head.y) && len<length;i++)
+	{
+		GotoXY(head.x, head.y + i);
+		{
+			if (len == 0)
+				printf("^");
+			else
+				printf("*");
+		}
+		body[len].x = head.x;
+		body[len].y = head.y + i;
+		len++;
+	}
+	Bend();
+	if (!kbhit())
+		head.y--;
+}
 void Down()
 {
     int i;
@@ -242,6 +279,50 @@ void Down()
     Bend();
     if(!kbhit())
         head.y++;
+}
+void Left()
+{
+	int i;
+	for (i = 0;i <= (bend[bend_no].x - head.x) && len<length;i++)
+	{
+		GotoXY((head.x + i), head.y);
+		{
+			if (len == 0)
+				printf("<");
+			else
+				printf("*");
+		}
+		body[len].x = head.x + i;
+		body[len].y = head.y;
+		len++;
+	}
+	Bend();
+	if (!kbhit())
+		head.x--;
+
+}
+void Right()
+{
+	int i;
+	for (i = 0;i <= (head.x - bend[bend_no].x) && len<length;i++)
+	{
+		//GotoXY((head.x-i),head.y);
+		body[len].x = head.x - i;
+		body[len].y = head.y;
+		GotoXY(body[len].x, body[len].y);
+		{
+			if (len == 0)
+				printf(">");
+			else
+				printf("*");
+		}
+		/*body[len].x=head.x-i;
+		body[len].y=head.y;*/
+		len++;
+	}
+	Bend();
+	if (!kbhit())
+		head.x++;
 }
 void Delay(long double k)
 {
@@ -306,50 +387,6 @@ void Food()
         if(food.y<=10)
             food.y+=11;
     }
-}
-void Left()
-{
-    int i;
-    for(i=0;i<=(bend[bend_no].x-head.x)&&len<length;i++)
-    {
-        GotoXY((head.x+i),head.y);
-       {
-                if(len==0)
-                    printf("<");
-                else
-                    printf("*");
-        }
-        body[len].x=head.x+i;
-        body[len].y=head.y;
-        len++;
-    }
-    Bend();
-    if(!kbhit())
-        head.x--;
-
-}
-void Right()
-{
-    int i;
-    for(i=0;i<=(head.x-bend[bend_no].x)&&len<length;i++)
-    {
-        //GotoXY((head.x-i),head.y);
-        body[len].x=head.x-i;
-        body[len].y=head.y;
-        GotoXY(body[len].x,body[len].y);
-        {
-            if(len==0)
-                printf(">");
-            else
-                printf("*");
-        }
-        /*body[len].x=head.x-i;
-        body[len].y=head.y;*/
-        len++;
-    }
-    Bend();
-    if(!kbhit())
-        head.x++;
 }
 void Bend()
 {
@@ -449,7 +486,6 @@ void Print()
    if(getch()==27)
    exit(0);
 }
-
 int Score()
 {
    int score;
@@ -467,23 +503,4 @@ int score=Score();
 system("cls");
 return score;
 }
-void Up()
-{
-   int i;
-   for(i=0;i<=(bend[bend_no].y-head.y)&&len<length;i++)
-   {
-       GotoXY(head.x,head.y+i);
-       {
-           if(len==0)
-               printf("^");
-           else
-               printf("*");
-       }
-       body[len].x=head.x;
-       body[len].y=head.y+i;
-       len++;
-   }
-   Bend();
-   if(!kbhit())
-       head.y--;
-}
+
