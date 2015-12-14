@@ -281,6 +281,7 @@ void ExitGame()
         {
             system("cls");
             printf("All lives completed\nBetter Luck Next Time!!!\nPress any key to quit the game\n");
+            getch();
             exit(0);
         }
     }
