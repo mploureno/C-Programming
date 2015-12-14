@@ -17,8 +17,8 @@ int length;
 int bend_no;
 int len;
 char key;
-void load();
 int life;
+void load();
 void Delay(long double);
 void Move();
 void Food();
@@ -236,8 +236,10 @@ void load(){
     printf("loading...");
     gotoxy(30,15);
     for(r=1;r<=20;r++){
-    for(q=0;q<=100000000;q++);//to display the character slowly
-    printf("%c",177);}
+        //blank loop for delaying
+        for(q=0;q<=100000000;q++);
+        printf("%c",176);
+    }
     getch();
 }
 void Up()
@@ -248,9 +250,9 @@ void Up()
 		GotoXY(head.x, head.y + i);
 		{
 			if (len == 0)
-				printf("^");
+				printf("%c",30);
 			else
-				printf("*");
+				printf("%c",177);
 		}
 		body[len].x = head.x;
 		body[len].y = head.y + i;
@@ -268,9 +270,9 @@ void Down()
         GotoXY(head.x,head.y-i);
         {
             if(len==0)
-                printf("v");
+                printf("%c",31);
             else
-                printf("*");
+                printf("%c",177);
         }
         body[len].x=head.x;
         body[len].y=head.y-i;
@@ -288,9 +290,9 @@ void Left()
 		GotoXY((head.x + i), head.y);
 		{
 			if (len == 0)
-				printf("<");
+				printf("%c",17);
 			else
-				printf("*");
+				printf("%c",177);
 		}
 		body[len].x = head.x + i;
 		body[len].y = head.y;
@@ -312,12 +314,11 @@ void Right()
 		GotoXY(body[len].x, body[len].y);
 		{
 			if (len == 0)
-				printf(">");
+				printf("%c",16);
 			else
-				printf("*");
+				printf("%c",177);
 		}
-		/*body[len].x=head.x-i;
-		body[len].y=head.y;*/
+
 		len++;
 	}
 	Bend();
@@ -402,7 +403,7 @@ void Bend()
                         body[len].x=bend[i].x;
                         body[len].y=bend[i].y+j;
                         GotoXY(body[len].x,body[len].y);
-                        printf("*");
+                        printf("%c",177);
                         len++;
                         if(len==length)
                             break;
@@ -415,7 +416,7 @@ void Bend()
                         body[len].x=bend[i].x;
                         body[len].y=bend[i].y-j;
                         GotoXY(body[len].x,body[len].y);
-                        printf("*");
+                        printf("%c",177);
                         len++;
                         if(len==length)
                             break;
@@ -432,7 +433,7 @@ void Bend()
                     body[len].x=bend[i].x+j;
                     body[len].y=bend[i].y;
                     GotoXY(body[len].x,body[len].y);
-                        printf("*");
+                        printf("%c",177);
                    len++;
                    if(len==length)
                            break;
@@ -445,7 +446,7 @@ void Bend()
                    body[len].x=bend[i].x-j;
                    body[len].y=bend[i].y;
                    GotoXY(body[len].x,body[len].y);
-                       printf("*");
+                       printf("%c",177);
                    len++;
                    if(len==length)
                        break;
@@ -458,20 +459,20 @@ void Boarder()
    system("cls");
    int i;
    GotoXY(food.x,food.y);   /*displaying food*/
-       printf("F");
+       printf("%c",3);
    for(i=10;i<71;i++)
    {
        GotoXY(i,10);
-           printf("!");
+           printf("%c",15);
        GotoXY(i,30);
-           printf("!");
+           printf("%c",15);
    }
    for(i=10;i<31;i++)
    {
        GotoXY(10,i);
-           printf("!");
+           printf("%c",15);
        GotoXY(70,i);
-       printf("!");
+       printf("%c",15);
    }
 }
 void Print()
