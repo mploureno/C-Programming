@@ -12,7 +12,7 @@
 #define DOWN 80
 #define LEFT 75
 #define RIGHT 77
-
+int score;
 int length;
 int bend_no;
 int len;
@@ -41,9 +41,7 @@ struct coordinate{
 };
 
 typedef struct coordinate coordinate;
-
 coordinate head, bend[500],food,body[30];
-
 int main()
 {
     /* Change the Background Color as following:
@@ -75,141 +73,78 @@ int main()
     head.y=20;
     head.direction=RIGHT;
     board();
-
     Food(); //to generate food coordinates initially
-
     life=3; //number of extra lives
-
     bend[0]=head;
-
     Move();   //initialing initial bend coordinate
-
     return 0;
-
 }
 void Move()
 {
     int a,i;
-
     do{
-
         Food();
         fflush(stdin);
-
         len=0;
-
         for(i=0;i<30;i++)
-
         {
-
             body[i].x=0;
-
             body[i].y=0;
-
             if(i==length)
-
             break;
-
         }
-
         Delay(length);
-
         board();
-
         if(head.direction==RIGHT)
-
             Right();
-
         else if(head.direction==LEFT)
-
             Left();
-
         else if(head.direction==DOWN)
-
             Down();
-
         else if(head.direction==UP)
-
             Up();
-
         ExitGame();
-
     }while(!kbhit());
-
-    a=getch();
-
-    if(a==27)
-
-    {
-
-        system("cls");
-
-        exit(0);
-
-    }
+        a=getch();
+        if(a==27)
+            {
+                system("cls");
+                exit(0);
+            }
     key=getch();
-
     if((key==RIGHT&&head.direction!=LEFT&&head.direction!=RIGHT)||(key==LEFT&&head.direction!=RIGHT&&head.direction!=LEFT)||(key==UP&&head.direction!=DOWN&&head.direction!=UP)||(key==DOWN&&head.direction!=UP&&head.direction!=DOWN))
-
     {
-
         bend_no++;
-
         bend[bend_no]=head;
-
         head.direction=key;
-
         if(key==UP)
-
             head.y--;
-
         if(key==DOWN)
-
             head.y++;
-
         if(key==RIGHT)
-
             head.x++;
-
         if(key==LEFT)
-
             head.x--;
-
         Move();
-
     }
-
     else if(key==27)
-
     {
-
         system("cls");
-
         exit(0);
-
     }
-
     else
-
     {
-
         printf("\a");
-
         Move();
-
     }
 }
 void gotoxy(int x, int y)
 {
-
- COORD coord;
-
- coord.X = x;
-
- coord.Y = y;
-
- SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
-
+    COORD coord;
+    coord.X = x;
+    coord.Y = y;
+    //set the cursor position using windows function
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 void GotoXY(int x, int y)
 {
@@ -231,7 +166,7 @@ void load(){
         for(q=0;q<=100000000;q++);
         printf("%c",176);
     }
-    getch();
+    //getch();
 }
 void Up()
 {
@@ -336,6 +271,7 @@ void ExitGame()
     if(head.x<=10||head.x>=70||head.y<=10||head.y>=30||check!=0)
     {
         life--;
+        length=5;
         if(life>=0)
         {
             head.x=25;
@@ -357,6 +293,7 @@ void Food()
     if(head.x==food.x&&head.y==food.y)
     {
         length++;
+        score++;
         time_t a;
         a=time(0);
         srand(a);
@@ -468,11 +405,8 @@ void Print()
 }
 int Score()
 {
-   int score;
    GotoXY(20,8);
-   score=length-5;
-   printf("SCORE : %d",(length-5));
-   score=length-5;
+   printf("SCORE : %d",score);
    GotoXY(50,8);
    printf("Life : %d",life);
    return score;
