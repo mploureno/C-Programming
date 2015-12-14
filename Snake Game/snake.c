@@ -1,10 +1,7 @@
 #include <stdio.h>
-#include <time.h>
 #include <stdlib.h>
 #include <conio.h>
-#include<time.h>
 #include<ctype.h>
-#include <time.h>
 #include <windows.h>
 #include <process.h>
 
@@ -294,9 +291,6 @@ void Food()
     {
         length++;
         score++;
-        //time_t a;
-        //a=time(0);
-        //srand(a);
         food.x=rand()%70;
         if(food.x<=10)
             food.x+=11;
