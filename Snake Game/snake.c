@@ -19,7 +19,7 @@ int len;
 char key;
 int life;
 void load();
-void Delay(long double);
+void Delay(long double);//To have a greater delay with 80 bit number
 void Move();
 void Food();
 int Score();
@@ -27,13 +27,12 @@ void Print();
 void gotoxy(int x, int y);
 void GotoXY(int x,int y);
 void Bend();
-void Boarder();
+void board();
 void Down();
 void Left();
 void Up();
 void Right();
 void ExitGame();
-int Scoreonly();
 
 struct coordinate{
     int x;
@@ -68,22 +67,14 @@ int main()
     */
     system("COLOR 3F");
     char key;
-
     Print();
-
     system("cls");
-
     load();
-
     length=5;
-
     head.x=25;
-
     head.y=20;
-
     head.direction=RIGHT;
-
-    Boarder();
+    board();
 
     Food(); //to generate food coordinates initially
 
@@ -123,7 +114,7 @@ void Move()
 
         Delay(length);
 
-        Boarder();
+        board();
 
         if(head.direction==RIGHT)
 
@@ -308,7 +299,6 @@ void Right()
 	int i;
 	for (i = 0;i <= (head.x - bend[bend_no].x) && len<length;i++)
 	{
-		//GotoXY((head.x-i),head.y);
 		body[len].x = head.x - i;
 		body[len].y = head.y;
 		GotoXY(body[len].x, body[len].y);
@@ -358,7 +348,6 @@ void ExitGame()
         {
             system("cls");
             printf("All lives completed\nBetter Luck Next Time!!!\nPress any key to quit the game\n");
-            //record();
             exit(0);
         }
     }
@@ -411,8 +400,6 @@ void Bend()
                 else if(diff>0)
                     for(j=1;j<=diff;j++)
                     {
-                        /*GotoXY(bend[i].x,(bend[i].y-j));
-                        printf("*");*/
                         body[len].x=bend[i].x;
                         body[len].y=bend[i].y-j;
                         GotoXY(body[len].x,body[len].y);
@@ -428,21 +415,18 @@ void Bend()
             if(diff<0)
                 for(j=1;j<=(-diff)&&len<length;j++)
                 {
-                    /*GotoXY((bend[i].x+j),bend[i].y);
-                    printf("*");*/
                     body[len].x=bend[i].x+j;
                     body[len].y=bend[i].y;
                     GotoXY(body[len].x,body[len].y);
-                        printf("%c",177);
-                   len++;
-                   if(len==length)
+                    printf("%c",177);
+                    len++;
+                    if(len==length)
                            break;
                }
            else if(diff>0)
                for(j=1;j<=diff&&len<length;j++)
                {
-                   /*GotoXY((bend[i].x-j),bend[i].y);
-                   printf("*");*/
+
                    body[len].x=bend[i].x-j;
                    body[len].y=bend[i].y;
                    GotoXY(body[len].x,body[len].y);
@@ -454,7 +438,7 @@ void Bend()
        }
    }
 }
-void Boarder()
+void board()
 {
    system("cls");
    int i;
@@ -477,15 +461,10 @@ void Boarder()
 }
 void Print()
 {
-   //GotoXY(10,12);
-   printf("\tWelcome to the mini Snake game.(press any key to continue)\n");
-  getch();
-   system("cls");
-   printf("\tGame instructions:\n");
-   printf("\n-> Use arrow keys to move the snake.\n\n-> You will be provided foods at the several coordinates of the screen which you have to eat. Everytime you eat a food the length of the snake will be increased by 1 element and thus the score.\n\n-> Here you are provided with three lives. Your life will decrease as you hit the wall or snake's body.\n\n-> YOu can pause the game in its middle by pressing any key. To continue the paused game press any other key once again\n\n-> If you want to exit press esc. \n");
-   printf("\n\nPress any key to play game...");
-   if(getch()==27)
-   exit(0);
+    GotoXY(10,12);
+    printf("\tThe Snake is Back! (press any key to continue)\n");
+    if(getch()==27)
+        exit(0);
 }
 int Score()
 {
@@ -497,11 +476,5 @@ int Score()
    GotoXY(50,8);
    printf("Life : %d",life);
    return score;
-}
-int Scoreonly()
-{
-int score=Score();
-system("cls");
-return score;
 }
 
