@@ -6,7 +6,7 @@ I have tried to follow the best practices with the help of my instructor. Indent
 
 ## Motivation
 The motivation behind these projects were to practice computer programming and learn fundamentals of C Programming Language.
-
+At the end of this course, I was asked to develop a complete application. Therefore, I developed a <a href=https://github.com/mirza360/C-Programming/tree/master/Snake%20Game>Simple Snake Game</a> with the help of several online resources. 
 
 ## Installation
 To run any of these projects, all you need is C compiler and an IDE to edit them. All of the sections are precisely segmanted so that I can go through it any time for the sake of revisiting the fundamentals.
