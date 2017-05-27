@@ -46,7 +46,7 @@ Since December, 2015 I could have a chance to modify or develop this project fur
 
 ## Authors
 
-* **Mirza Belal Ahmed** 
+ **Mirza Belal Ahmed** 
 - *Website* - [mirza.space](http://mirza.space)
 - *Blog* - [mirza360.com](http://mirza360.com)
 
