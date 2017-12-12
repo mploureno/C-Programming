@@ -18,7 +18,7 @@ int main(){
     }
     //print
     for(count=0;count<size;count++){
-        printf("%d ",*ptr+count);
+        printf("%d ",*(ptr+count));
     }
 
 
